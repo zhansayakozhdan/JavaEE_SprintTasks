@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.Developer;
+import models.Item;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,22 +18,31 @@ import java.util.List;
 public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Developer> developers = DbManager.getDevelopers();
-        req.setAttribute("razraby", developers);
+        List<Item> items = DbManager.getItems();
+        req.setAttribute("tovary", items);
         req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
+    //вытаскивали данные из эррейлиста это типа была наша база отирик
+    //@Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        List<Developer> developers = DbManager.getDevelopers();
+//        req.setAttribute("razraby", developers);
+//        req.getRequestDispatcher("home.jsp").forward(req, resp);
+//    }
+//
+//    @Override
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        String name = req.getParameter("name");
+//        String surname = req.getParameter("surname");
+//        String department = req.getParameter("department");
+//        Integer salary = Integer.parseInt(req.getParameter("salary"));
+//
+//        Developer developer = new Developer(name, surname, department, salary);
+//        DbManager.addDeveloper(developer);
+//        resp.sendRedirect("/home");                         //перезапустить метод doGet(), указывая ссылку на сервлет
+//    }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
-        String surname = req.getParameter("surname");
-        String department = req.getParameter("department");
-        Integer salary = Integer.parseInt(req.getParameter("salary"));
-
-        Developer developer = new Developer(name, surname, department, salary);
-        DbManager.addDeveloper(developer);
-        resp.sendRedirect("/home");                         //перезапустить метод doGet(), указывая ссылку на сервлет
-    }
+    //отдельно
 
     //    @Override
 //    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

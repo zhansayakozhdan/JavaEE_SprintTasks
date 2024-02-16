@@ -1,4 +1,4 @@
-package models;
+package model;
 
 public class Item {
     private Long id;
@@ -6,14 +6,15 @@ public class Item {
     private String description;
     private Double price;
 
+    public Item(){
+
+    }
+
     public Item(Long id, String name, String description, Double price) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-    }
-    public Item(){
-
     }
 
     public Long getId() {
