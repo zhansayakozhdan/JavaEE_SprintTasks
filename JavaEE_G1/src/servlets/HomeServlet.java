@@ -22,6 +22,7 @@ public class HomeServlet extends HttpServlet {
         req.setAttribute("tovary", items);
         req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
+
     //вытаскивали данные из эррейлиста это типа была наша база отирик
     //@Override
 //    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
