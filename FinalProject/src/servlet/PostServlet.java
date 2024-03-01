@@ -21,7 +21,7 @@ public class PostServlet extends HttpServlet {
         //считываем из сессии
         HttpSession session = req.getSession();
         User currentUser = (User) session.getAttribute("currentUser");
-        if(currentUser == null){
+        if (currentUser == null) {
             resp.sendRedirect("/signin");
             return;
         }

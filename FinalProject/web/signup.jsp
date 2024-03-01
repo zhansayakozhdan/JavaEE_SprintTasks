@@ -9,16 +9,16 @@
 <html>
 <head>
     <title>Sign Up</title>
-    <%@include file="head.jsp"%>
+    <%@include file="head.jsp" %>
 </head>
 <body>
-<%@include file="navbar.jsp"%>
+<%@include file="navbar.jsp" %>
 
 <div class="col-6 mx-auto">
 
     <%
         String success = request.getParameter("success");
-        if(success!=null){
+        if (success != null) {
     %>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Account created successfully!</strong>
@@ -29,7 +29,7 @@
     %>
     <%
         String error = request.getParameter("error");
-        if(error!=null){
+        if (error != null) {
     %>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Email is busy! or You entered different passwords! Try again!</strong>
@@ -51,13 +51,14 @@
         </div>
         <div class="mb-3">
             <label for="rePassword" class="form-label">Repeat your password</label>
-            <input name="rePassword" type="password" class="form-control" id="rePassword" placeholder="Repeat your password">
+            <input name="rePassword" type="password" class="form-control" id="rePassword"
+                   placeholder="Repeat your password">
         </div>
         <div class="mb-3">
             <label for="fullNameField" class="form-label">Full Name</label>
             <input name="full_name" type="text" class="form-control" id="fullNameField" placeholder="Your full name">
         </div>
-        <input name="role_id" type="hidden" >
+        <input name="role_id" type="hidden">
 
         <button type="submit" class="btn btn-primary">Create Account</button>
     </form>

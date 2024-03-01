@@ -7,15 +7,17 @@ public class User {
     private String fullName;
     private Integer roleId;
 
-    public User(){
+    public User() {
 
     }
-    public User(String fullName, String email, String password, Integer roleId){
+
+    public User(String fullName, String email, String password, Integer roleId) {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
         this.roleId = roleId;
     }
+
     public User(Long id, String email, String password, String fullName, Integer roleId) {
         this.id = id;
         this.email = email;

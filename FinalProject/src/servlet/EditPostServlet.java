@@ -29,12 +29,12 @@ public class EditPostServlet extends HttpServlet {
         if (category != null) {
             Post post = DbPost.getPostById(id);
 
-            if(post != null){
+            if (post != null) {
                 post.setTitle(title);
                 post.setContent(content);
                 post.setCategory(category);
 
-                if(DbPost.editPost(post)){
+                if (DbPost.editPost(post)) {
                     redirect = "/editPost?id=" + id + "&success";
                 } else {
                     redirect = "/editPost?id=" + id + "&error";
@@ -55,20 +55,20 @@ public class EditPostServlet extends HttpServlet {
         }
 
 
-            Long id = Long.parseLong(req.getParameter("id"));
+        Long id = Long.parseLong(req.getParameter("id"));
 
-            Post post = DbPost.getPostById(id);
+        Post post = DbPost.getPostById(id);
 
-            if (post != null) {
-                req.setAttribute("post", post);
+        if (post != null) {
+            req.setAttribute("post", post);
 
-                List<PostsCategory> categories = DbPost.getAllPostsCategories();
-                req.setAttribute("categories", categories);
+            List<PostsCategory> categories = DbPost.getAllPostsCategories();
+            req.setAttribute("categories", categories);
 
-                req.getRequestDispatcher("/editPost.jsp").forward(req, resp);
-            } else {
-                req.getRequestDispatcher("/").forward(req, resp);
-            }
+            req.getRequestDispatcher("/editPost.jsp").forward(req, resp);
+        } else {
+            req.getRequestDispatcher("/").forward(req, resp);
         }
+    }
 
 }

@@ -18,7 +18,7 @@
 <div class="col-8 mx-auto">
     <%
         String success = request.getParameter("success");
-        if(success!=null){
+        if (success != null) {
     %>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Post created successfully!</strong>
@@ -29,7 +29,7 @@
     %>
     <%
         String error = request.getParameter("error");
-        if(error!=null){
+        if (error != null) {
     %>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Something went wrong! Try again!</strong>
@@ -50,18 +50,18 @@
         <div class="mb-3">
             <label for="category" class="form-label">Category</label>
             <select class=" form-control custom-select my-1 mr-sm-2" name="category_id">
-            <%
-                List<PostsCategory> categories = (List<PostsCategory>) request.getAttribute("categories");
-                if (categories != null) {
-                    for (PostsCategory c : categories) {
-            %>
-            <option value="<%=c.getId()%>" id="category">
-                <%=c.getCategoryName()%>
-            </option>
-            <%
+                <%
+                    List<PostsCategory> categories = (List<PostsCategory>) request.getAttribute("categories");
+                    if (categories != null) {
+                        for (PostsCategory c : categories) {
+                %>
+                <option value="<%=c.getId()%>" id="category">
+                    <%=c.getCategoryName()%>
+                </option>
+                <%
+                        }
                     }
-                }
-            %>
+                %>
             </select>
         </div>
         <button class="btn btn-success">+ ADD POST</button>

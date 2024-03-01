@@ -17,13 +17,13 @@ public class DeletePostServlet extends HttpServlet {
         Long id = Long.parseLong(req.getParameter("id"));
         Post post = DbPost.getPostById(id);
 
-        if(post != null){
-            if(DbPost.deletePost(post)){
+        if (post != null) {
+            if (DbPost.deletePost(post)) {
                 resp.sendRedirect("/");
-            }else {
+            } else {
                 resp.sendRedirect("/editPost?id=" + id + "&error");
             }
-        }else {
+        } else {
             resp.sendRedirect("/");
         }
     }

@@ -57,7 +57,7 @@ public class DbPost {
         return posts;
     }
 
-    public static Post getPostById(Long id){
+    public static Post getPostById(Long id) {
         Post post = null;
         try {
             var statement = connection.prepareStatement(
@@ -68,7 +68,7 @@ public class DbPost {
             );
             statement.setLong(1, id);
             var result = statement.executeQuery();
-            if(result.next()){
+            if (result.next()) {
                 post = new Post();
                 post.setId(result.getLong("id"));
                 post.setTitle(result.getString("title"));
@@ -82,14 +82,14 @@ public class DbPost {
                 post.setCategory(category);
             }
             statement.close();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return post;
     }
 
-    public static void createPost(Post post){
-        try{
+    public static void createPost(Post post) {
+        try {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO POSTS(title, content, category_id, created_at) " +
                             "VALUES (?, ?, ?, now())"
@@ -100,7 +100,7 @@ public class DbPost {
 
             statement.executeUpdate();
             statement.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -129,9 +129,9 @@ public class DbPost {
         return categories;
     }
 
-    public static PostsCategory getCategoryById(Long id){
+    public static PostsCategory getCategoryById(Long id) {
         PostsCategory category = null;
-        try{
+        try {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT * FROM POSTS_CATEGORIES " +
                             "WHERE id = ? LIMIT 1"
@@ -139,14 +139,14 @@ public class DbPost {
             statement.setLong(1, id);
 
             ResultSet result = statement.executeQuery();
-            if(result.next()){
+            if (result.next()) {
                 category = new PostsCategory();
                 category.setId(result.getLong("id"));
                 category.setCategoryName(result.getString("name"));
             }
             statement.close();
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -155,7 +155,7 @@ public class DbPost {
 
     public static boolean editPost(Post post) {
         int rows = 0;
-        try{
+        try {
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE POSTS SET TITLE = ?, CONTENT = ?, CATEGORY_ID = ? " +
                             "WHERE ID = ?"
@@ -171,12 +171,12 @@ public class DbPost {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return rows>0;
+        return rows > 0;
     }
 
-    public static boolean deletePost(Post post){
+    public static boolean deletePost(Post post) {
         int rows = 0;
-        try{
+        try {
             PreparedStatement statement = connection.prepareStatement(
                     "DELETE FROM POSTS WHERE ID = ?"
             );
@@ -190,6 +190,6 @@ public class DbPost {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return rows>0;
+        return rows > 0;
     }
 }

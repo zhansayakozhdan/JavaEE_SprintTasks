@@ -23,7 +23,7 @@ public class PostDetailsServlet extends HttpServlet {
 
         User currentUser = (User) req.getSession().getAttribute("currentUser");
 
-        if(currentUser == null){
+        if (currentUser == null) {
             resp.sendRedirect("/signin");
             return;
         }

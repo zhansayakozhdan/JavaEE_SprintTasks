@@ -27,10 +27,10 @@ public class SignInServlet extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("currentUser", user);
         boolean authenticated = user != null;
-        if(authenticated) {
+        if (authenticated) {
             resp.sendRedirect("/posts");
             return;
         }
-        resp.sendRedirect("/signin?status="+authenticated);
+        resp.sendRedirect("/signin?status=" + authenticated);
     }
 }

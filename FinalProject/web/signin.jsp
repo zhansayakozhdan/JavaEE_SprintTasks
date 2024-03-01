@@ -9,16 +9,16 @@
 <html>
 <head>
     <title>Sign In</title>
-    <%@include file="head.jsp"%>
+    <%@include file="head.jsp" %>
 </head>
 <body>
-<%@include file="navbar.jsp"%>
+<%@include file="navbar.jsp" %>
 <div class="col-6 mx-auto">
     <%
         String status = request.getParameter("status");
-        if(status != null){
+        if (status != null) {
             Boolean authenticated = Boolean.valueOf(request.getParameter("status"));
-            if(Boolean.FALSE.equals(authenticated)){
+            if (Boolean.FALSE.equals(authenticated)) {
     %>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Incorrect email or password! Try again.</strong>

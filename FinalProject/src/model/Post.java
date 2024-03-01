@@ -8,7 +8,8 @@ public class Post {
     private PostsCategory category;
     private String title;
     private String content;
-    public Post(){
+
+    public Post() {
 
     }
 
@@ -20,7 +21,7 @@ public class Post {
         this.content = content;
     }
 
-    public Post(String title, String content, PostsCategory category){
+    public Post(String title, String content, PostsCategory category) {
         this.category = category;
         this.title = title;
         this.content = content;

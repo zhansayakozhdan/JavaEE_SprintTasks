@@ -9,9 +9,10 @@ public class Comment {
     private User user;
     private Post post;
 
-    public Comment(){
+    public Comment() {
 
     }
+
     public Comment(Long id, String value, LocalDateTime postedAt, User user, Post post) {
         this.id = id;
         this.value = value;

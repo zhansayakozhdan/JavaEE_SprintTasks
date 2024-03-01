@@ -30,7 +30,7 @@ public class SignUpServlet extends HttpServlet {
         User user = new User(fullName, email, password, 2);
 
 
-        if(DbManager.createUser(user, rePassword)){
+        if (DbManager.createUser(user, rePassword)) {
             redirect = "/signup?" + "&success";
         } else {
             redirect = "/signup?" + "&error";

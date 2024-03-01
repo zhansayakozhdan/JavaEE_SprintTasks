@@ -3,7 +3,8 @@ package model;
 public class PostsCategory {
     private Long id;
     private String categoryName;
-    public PostsCategory(){
+
+    public PostsCategory() {
 
     }
 

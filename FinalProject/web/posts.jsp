@@ -19,11 +19,11 @@
     <%--     Кнопка только для админа проверка --%>
     <%
         int roleId = (int) request.getAttribute("roleId");
-        if(roleId == 1){
+        if (roleId == 1) {
     %>
-        <div class="d-grid gap-2 col-6 mx-auto" style="margin-bottom: 15px">
-            <a class="btn btn-success" aria-current="page" href="/addPost">+ Add Post</a>
-        </div>
+    <div class="d-grid gap-2 col-6 mx-auto" style="margin-bottom: 15px">
+        <a class="btn btn-success" aria-current="page" href="/addPost">+ Add Post</a>
+    </div>
     <%
         }
     %>
@@ -44,7 +44,7 @@
         </div>
 
     </div>
-        <hr>
+    <hr>
     <%
         }
     %>

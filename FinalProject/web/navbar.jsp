@@ -10,7 +10,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 20px;">
     <div class="container-fluid col-8 mx-auto">
         <a class="navbar-brand" href="/posts">NEWS</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -28,7 +29,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/signin">Sign In</a>
                 </li>
-                <% } else if (session.getAttribute("currentUser") != null){ %>
+                <% } else if (session.getAttribute("currentUser") != null) { %>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/userProfile">My Profile</a>
                 </li>

@@ -8,6 +8,7 @@ import java.util.Objects;
 
 public class DbManager {
     private static Connection connection;
+
     static {
         try {
             Class.forName("org.postgresql.Driver");
@@ -21,7 +22,7 @@ public class DbManager {
         }
     }
 
-    public static User getUserByEmail(String email){
+    public static User getUserByEmail(String email) {
         User user = null;
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -30,7 +31,7 @@ public class DbManager {
             );
             statement.setString(1, email);
             ResultSet result = statement.executeQuery();
-            if(result.next()){
+            if (result.next()) {
                 user = new User();
                 user.setId(result.getLong("id"));
                 user.setEmail(result.getString("email"));
@@ -40,24 +41,24 @@ public class DbManager {
             }
             statement.close();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return user;
     }
 
-    public static boolean createUser(User user, String rePassword){
+    public static boolean createUser(User user, String rePassword) {
         int rows = 0;
         User currentUser = getUserByEmail(user.getEmail());
-        if(currentUser != null){
+        if (currentUser != null) {
             return false;
         }
 
-        if(!Objects.equals(user.getPassword(), rePassword)){
+        if (!Objects.equals(user.getPassword(), rePassword)) {
             return false;
         }
-        try{
+        try {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO USERS(full_name, email, password, role_id) " +
                             "VALUES(?, ?, ?, ?)"
@@ -68,19 +69,19 @@ public class DbManager {
             statement.setInt(4, user.getRoleId());
             rows = statement.executeUpdate();
             statement.close();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return rows>0;
+        return rows > 0;
     }
 
-    public static User authorization(String email, String password){
+    public static User authorization(String email, String password) {
         User user = getUserByEmail(email);
 
-        if(user == null){
+        if (user == null) {
             return null;
         }
-        if(!Objects.equals(user.getPassword(), password)){
+        if (!Objects.equals(user.getPassword(), password)) {
             return null;
         }
         return user;
@@ -88,7 +89,7 @@ public class DbManager {
 
     public static boolean editProfile(User user) {
         int rows = 0;
-        try{
+        try {
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE USERS SET FULL_NAME = ?, PASSWORD = ? " +
                             "WHERE ID = ?"
@@ -103,10 +104,10 @@ public class DbManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return rows>0;
+        return rows > 0;
     }
 
-    public static Integer getUserRoleIdByEmail(String email){
+    public static Integer getUserRoleIdByEmail(String email) {
         Integer roleId = null;
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -115,12 +116,12 @@ public class DbManager {
             );
             statement.setString(1, email);
             ResultSet result = statement.executeQuery();
-            if(result.next()){
+            if (result.next()) {
                 roleId = result.getInt("role_id");
             }
             statement.close();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

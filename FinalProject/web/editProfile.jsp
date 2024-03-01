@@ -8,21 +8,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <%@include file="head.jsp"%>
+    <%@include file="head.jsp" %>
     <title>Edit Profile</title>
 </head>
 <body>
-<%@include file="navbar.jsp"%>
+<%@include file="navbar.jsp" %>
 
 <%
     User user = (User) request.getAttribute("user");
-    if(user != null){
+    if (user != null) {
 %>
 <div class="col-6 mx-auto">
 
     <%
         String success = request.getParameter("success");
-        if(success!=null){
+        if (success != null) {
     %>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Profile edited successfully!</strong>
@@ -33,7 +33,7 @@
     %>
     <%
         String error = request.getParameter("error");
-        if(error!=null){
+        if (error != null) {
     %>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Something went wrong!</strong>
@@ -42,19 +42,21 @@
     <%
         }
     %>
-<form action="/edit" method="post">
-    <input type="hidden" value="<%=user.getEmail()%>" name="user_email">
-    <div class="mb-3">
-        <label for="exampleInputFullName" class="form-label">Full Name</label>
-        <input name="full_name" type="text" class="form-control" id="exampleInputFullName" value="<%=user.getFullName()%>">
-    </div>
-    <div class="mb-3">
-        <label for="inputPassword" class="form-label">Password</label>
-        <input name="password" type="password" class="form-control" id="inputPassword" value="<%=user.getPassword()%>">
-    </div>
-    <button class="btn btn-success">UPDATE MY DATA</button>
+    <form action="/edit" method="post">
+        <input type="hidden" value="<%=user.getEmail()%>" name="user_email">
+        <div class="mb-3">
+            <label for="exampleInputFullName" class="form-label">Full Name</label>
+            <input name="full_name" type="text" class="form-control" id="exampleInputFullName"
+                   value="<%=user.getFullName()%>">
+        </div>
+        <div class="mb-3">
+            <label for="inputPassword" class="form-label">Password</label>
+            <input name="password" type="password" class="form-control" id="inputPassword"
+                   value="<%=user.getPassword()%>">
+        </div>
+        <button class="btn btn-success">UPDATE MY DATA</button>
 
-</form>
+    </form>
 </div>
 <%
     }

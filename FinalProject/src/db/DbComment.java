@@ -11,6 +11,7 @@ import java.util.List;
 
 public class DbComment {
     private static Connection connection;
+
     static {
         try {
             Class.forName("org.postgresql.Driver");
@@ -24,9 +25,9 @@ public class DbComment {
         }
     }
 
-    public static List<Comment> getCommentsByPostId(Long postId){
+    public static List<Comment> getCommentsByPostId(Long postId) {
         List<Comment> comments = new ArrayList<>();
-        try{
+        try {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT c.*, p.title, p.content, p.created_at AS postCreatedAt, u.email " +
                             "FROM COMMENTS c " +
@@ -36,37 +37,37 @@ public class DbComment {
             );
 
             statement.setLong(1, postId);
-           ResultSet result =  statement.executeQuery();
-           while(result.next()){
-               Comment comment = new Comment();
-               comment.setId(result.getLong("id"));
-               comment.setValue(result.getString("value"));
-               comment.setPostedAt(result.getObject("posted_at", LocalDateTime.class));
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                Comment comment = new Comment();
+                comment.setId(result.getLong("id"));
+                comment.setValue(result.getString("value"));
+                comment.setPostedAt(result.getObject("posted_at", LocalDateTime.class));
 
-               User user = new User();
-               user.setId(result.getLong("user_id"));
-               user.setEmail(result.getString("email"));
-               comment.setUser(user);
+                User user = new User();
+                user.setId(result.getLong("user_id"));
+                user.setEmail(result.getString("email"));
+                comment.setUser(user);
 
-               Post post = new Post();
-               post.setId(result.getLong("post_id"));
-               post.setTitle(result.getString("title"));
-               post.setContent(result.getString("content"));
-               post.setCreatedAt(result.getObject("postCreatedAt", LocalDateTime.class));
-               comment.setPost(post);
+                Post post = new Post();
+                post.setId(result.getLong("post_id"));
+                post.setTitle(result.getString("title"));
+                post.setContent(result.getString("content"));
+                post.setCreatedAt(result.getObject("postCreatedAt", LocalDateTime.class));
+                comment.setPost(post);
 
-               comments.add(comment);
-           }
-           statement.close();
-        }catch(Exception e){
+                comments.add(comment);
+            }
+            statement.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return comments;
     }
 
-    public static void addComment(String value, Long userId, Long postId){
-        try{
+    public static void addComment(String value, Long userId, Long postId) {
+        try {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO COMMENTS (value, user_id, post_id, posted_at) " +
                             "VALUES (?, ?, ?, now())"
@@ -76,7 +77,7 @@ public class DbComment {
             statement.setLong(3, postId);
             statement.executeUpdate();
             statement.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

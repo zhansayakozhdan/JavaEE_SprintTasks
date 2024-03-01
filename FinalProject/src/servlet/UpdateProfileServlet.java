@@ -49,12 +49,12 @@ public class UpdateProfileServlet extends HttpServlet {
         String redirect = "/";
 
         User user = DbManager.getUserByEmail(email);
-        if(user != null){
+        if (user != null) {
 
             user.setFullName(newFullName);
             user.setPassword(newPassword);
 
-            if(DbManager.editProfile(user)){
+            if (DbManager.editProfile(user)) {
                 redirect = "/edit?" + "&success";
                 req.getSession().setAttribute("currentUser", user);
             } else {
